@@ -2,10 +2,9 @@ services:
   - type: web
     name: n8n
     env: docker
-    region: oregon # optional (defaults to oregon)
-    plan: standard # optional (defaults to starter)
-    branch: main # optional (defaults to master)
-    # dockerCommand: ./webdis.sh # optional (defaults to Dockerfile command)
+    region: oregon  # Optional: you can change it
+    plan: free      # ✅ Set to 'free' to avoid payment
+    branch: main    # Change if your repo uses a different branch
     numInstances: 1
     healthCheckPath: /
     envVars:
@@ -32,8 +31,9 @@ services:
     disk:
       name: n8nDisk
       mountPath: /home/node/.n8n
-      sizeGB: 10
+      sizeGB: 1  # ✅ Keep this at 1GB or less for free plan
 
 databases:
   - name: n8nDB
-    plan: starter
+    plan: free   # ✅ Free PostgreSQL plan
+    ipAllowList: []  # Optional: allow access from all services
